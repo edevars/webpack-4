@@ -120,3 +120,17 @@ module.exports = {
   }
 };
 ```
+
+## Loaders
+
+Los Loaders son la funcionalidad que nos da Webpack para interpretar tipos de archivos no soportados de forma nativa por Javascript.
+
+style-loader sirve para inyectar un tag style (el CSS) al DOM de nuestro HTML, mientras que css-loader sólo sirve para interpretar archivos CSS.
+
+La manera de agregarlos en nuestro `webpack.config.js` es añadiendo un module, configurando una regla que será la encargada de clasificar que archivos se les aplicaran los loaders, para preprocesar los archivos que no son soportados de manera nativa. Por ejemplo, esta configuración de webpack nos permite importar el css dentro de javascript.
+
+```javascript
+import "../css/index.css";
+
+document.body.innerHTML = "<h1>Usando CSS en Webpack!</h1>";
+```

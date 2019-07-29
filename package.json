@@ -9,9 +9,12 @@
     "build": "webpack",
     "build:local": "webpack --mode production",
     "build:external": "webpack --config ./external/webpack.config",
-    "build:multi": "webpack --config ./multi_entry_points/webpack.config"
+    "build:multi": "webpack --config ./multi_entry_points/webpack.config",
+    "build:css": "webpack --config ./css-style-loader/webpack.config"
   },
   "devDependencies": {
+    "css-loader": "^3.1.0",
+    "style-loader": "^0.23.1",
     "webpack": "4.32.2",
     "webpack-cli": "3.3.2"
   }
