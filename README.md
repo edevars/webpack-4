@@ -7,6 +7,7 @@ Webpack es un empaquetador para Javascript y sus amigos. Convierte módulos con 
 Nos permite empaquetar, optimizar los diferentes módulos Javascript y sus dependencia en nuestro proyecto. Es usado en proyectos basados en Javascript como: React, Vue, Angular entre otros.
 
 #### User Experience
+
 Se logra con una aplicación que:
 
 - Funcione
@@ -17,6 +18,7 @@ Se logra con una aplicación que:
 - Producto de calidad
 
 #### Developer Experience
+
 Escribir aplicaciones de manera eficiente.
 
 - Tener un código limpio.
@@ -29,13 +31,13 @@ Escribir aplicaciones de manera eficiente.
 Para iniciar webpack se necesita crear un proyecto en Node a través de:
 
 ```
-yarn init 
+yarn init
 ```
 
 y agregar como dependencias de desarrollo a webpack y a webpack-cli.
 
 ```
-yarn add webpack webpack-cli -D 
+yarn add webpack webpack-cli -D
 ```
 
 ### CLI de webpack
@@ -45,11 +47,12 @@ El CLI (command line interface) de webpack nos permitira usar webpack desde nues
 ```
 npx webpack --entry ./index.js --output .bundle.js --mode development
 ```
+
 Desde webpack cuatro el CLI nos permite generar nuestros archivos optimizados tanto en entorno de desarrollo como de producción. Si queremos cambiar de modo en el CLI debemos agregar la bandera `--mode` y elegir entre `development` o `production`. Por defecto el valor del modo es de producción.
 
 ### Configuración de webpack
 
-Podemos hacer la configuración de webpack de nuestro proyecto creando un archivo llamado `webpack.config.js`. En este archivo configuraremos el comportamiento que tendra webpack para empaquetar todos nuestros archivos de desarrollo. 
+Podemos hacer la configuración de webpack de nuestro proyecto creando un archivo llamado `webpack.config.js`. En este archivo configuraremos el comportamiento que tendra webpack para empaquetar todos nuestros archivos de desarrollo.
 
 Es importante recalcar que webpack funciona con CommonJS, por lo que para requerir modulos de NodeJS lo haremos con `requiere()`.
 
@@ -66,11 +69,19 @@ module.exports = {
     filename: "bundle.js"
   }
 };
-
 ```
 
 Y para que webpack funcione ejecutamos unicamente:
 
 ```
 npx webpack
+```
+
+Si nosotros queremos, podemos agregar un script de `build` a nuesto archivo package.json. Esto con el fin de ser más claros al momento de definir que hace webpack.
+
+```json
+//package.json
+ "scripts": {
+    "build": "webpack"
+  },
 ```
