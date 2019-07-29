@@ -6,7 +6,9 @@
   "license": "MIT",
   "dependencies": {},
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "build:local": "webpack --mode production",
+    "build:external": "webpack --config ./external/webpack.config"
   },
   "devDependencies": {
     "webpack": "4.32.2",
