@@ -45,4 +45,32 @@ El CLI (command line interface) de webpack nos permitira usar webpack desde nues
 ```
 npx webpack --entry ./index.js --output .bundle.js --mode development
 ```
-Desde webpack cuatro el CLI nos permite generar nuestros archivos optimizados tanto en entorno de desarrollo como de producción. Si queremos cambiar de modo en el CLI debemos agregar la bandera `--mode` y elegir entre `development` o `production`. Por defecto el valor del modo es de producción,
+Desde webpack cuatro el CLI nos permite generar nuestros archivos optimizados tanto en entorno de desarrollo como de producción. Si queremos cambiar de modo en el CLI debemos agregar la bandera `--mode` y elegir entre `development` o `production`. Por defecto el valor del modo es de producción.
+
+### Configuración de webpack
+
+Podemos hacer la configuración de webpack de nuestro proyecto creando un archivo llamado `webpack.config.js`. En este archivo configuraremos el comportamiento que tendra webpack para empaquetar todos nuestros archivos de desarrollo. 
+
+Es importante recalcar que webpack funciona con CommonJS, por lo que para requerir modulos de NodeJS lo haremos con `requiere()`.
+
+Por ejemplo, esta configuración de webpack nos crea un bundle como output usando como entry nuestro `index.js`.
+
+```javascript
+const path = require("path");
+
+module.exports = {
+  entry: "./index.js",
+  mode: "development",
+  output: {
+    path: path.resolve(__dirname),
+    filename: "bundle.js"
+  }
+};
+
+```
+
+Y para que webpack funcione ejecutamos unicamente:
+
+```
+npx webpack
+```
