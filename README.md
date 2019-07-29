@@ -85,3 +85,16 @@ Si nosotros queremos, podemos agregar un script de `build` a nuesto archivo pack
     "build": "webpack"
   },
 ```
+
+## Diferentes configuraciones de build
+
+Con webpack podemos crear diferentes configuraciones al momento de hacer build. Por ejemplo si tenemos otro proyecto dentro de nuestra carpeta que queremos que lo precese webpack, podemos añadirle su propio archivo `webpack.config.json` y construir nuestro bundle. Algunos exemplos de configuraciones que se pueden hacer en nuestro proyecto pueden ser las siguientes:
+
+```json
+//package.json
+  "scripts": {
+    "build": "webpack",
+    "build:local": "webpack --mode production",
+    "build:external": "webpack --config ./external/webpack.config"
+  },
+```
