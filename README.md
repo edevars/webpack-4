@@ -98,3 +98,25 @@ Con webpack podemos crear diferentes configuraciones al momento de hacer build. 
     "build:external": "webpack --config ./external/webpack.config"
   },
 ```
+
+## Configuracion de multiples entry points
+
+En webpack es posible configurar multiples entry points, esto es necesario cuado tenemos un proyecto que no consume un único recurso. Para ello los puntos de entrada se deben configurar en un objeto. Y esos objetos pueden ser procesados a través de los templates que tiene webpack, estos se pueden usar con `[name]`. Aquí un ejemplo de como se hace:
+
+```javascript
+//webpack.config.js
+const path = require("path");
+
+module.exports = {
+  entry: {
+    home: path.resolve(__dirname, "src/js/index.js"),
+    precios: path.resolve(__dirname, "src/js/precios.js"),
+    contacto: path.resolve(__dirname, "src/js/contacto.js")
+  },
+  mode: "development",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "js/[name].js"
+  }
+};
+```
