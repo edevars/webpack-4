@@ -8,7 +8,8 @@
   "scripts": {
     "build": "webpack",
     "build:local": "webpack --mode production",
-    "build:external": "webpack --config ./external/webpack.config"
+    "build:external": "webpack --config ./external/webpack.config",
+    "build:multi": "webpack --config ./multi_entry_points/webpack.config"
   },
   "devDependencies": {
     "webpack": "4.32.2",
