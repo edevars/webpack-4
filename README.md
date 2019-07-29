@@ -37,3 +37,12 @@ y agregar como dependencias de desarrollo a webpack y a webpack-cli.
 ```
 yarn add webpack webpack-cli -D 
 ```
+
+### CLI de webpack
+
+El CLI (command line interface) de webpack nos permitira usar webpack desde nuestra terminal usando npx. Para empaquetar nuestros archivos optimizados y generar nuestro primer `bundle`, que es el que recibira el cliente, debemos ejecutar el cli de webpack, especificando el entry point (index.js) y especificar el archivo de salida que llamaremos `bundle.js`.
+
+```
+npx webpack --entry ./index.js --output .bundle.js --mode development
+```
+Desde webpack cuatro el CLI nos permite generar nuestros archivos optimizados tanto en entorno de desarrollo como de producción. Si queremos cambiar de modo en el CLI debemos agregar la bandera `--mode` y elegir entre `development` o `production`. Por defecto el valor del modo es de producción,
