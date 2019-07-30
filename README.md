@@ -225,7 +225,7 @@ Por ejemplo si nosotros queremos que webpack este a la escucha de nuestros archi
   }
 ```
 
-El inconveniente que tiene esta opción es que no ofrece *hot reloading*, es decir, que observemos los cambios de nuestra aplicación en tiempo real. Para eso podemos usar `webpack-dev-server`, lo podemos agregar a nuestras dependencias de desarrollo con: 
+El inconveniente que tiene esta opción es que no ofrece *live reloading*, es decir, que observemos los cambios de nuestra aplicación. Para eso podemos usar `webpack-dev-server`, lo podemos agregar a nuestras dependencias de desarrollo con: 
 
 ```
 yarn add webpack-dev-server -D 
@@ -237,4 +237,72 @@ Para configurarlo, en los scripts del `package.json` debemos agregar `webpack-de
   "scripts": {
     "build:dev": "webpack-dev-server --config ./dev-server/webpack.config"
   }
+```
+
+## Hot reloading replacement
+
+Esta caracteristica de webpack esta pensada para trabajar cuando desarrollamos. Nos permite observar los cambios de nuestro proyecto sin necesidad de recargar la página. Para ello hay que tomar algunas consideraciones:
+
+- Esta feature solo se debe usar en entorno de desarrollo.
+- Nuestro javascript debe estar encapsulado en una sola función que deseemos recargar constantemente (Como una app en react).
+
+Un ejemplo del javascript es el siguiente:
+
+```javascript
+import title from "./title";
+import "../css/index.css";
+
+title();
+
+//Revisa si el hot module replacement esta activo
+if (module.hot) {
+  //Lo que queremos que se recargue en el DOM
+  module.hot.accept("./title", () => {
+    title();
+  });
+}
+```
+
+Como puedes ver tenemos una función title que nosotros queremos que se cargue constantemente.
+
+La configuración que debemos usar en webpack es la siguiente: 
+
+
+```javascript
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+
+module.exports = {
+  entry: path.resolve(__dirname, "src/js/index.js"),
+  mode: "development",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "js/bundle.js"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          "css-loader"
+        ]
+      }
+    ]
+  },
+  //Configuración especial de nuestro dev server
+  devServer: {
+    hot: true, //permite el hot replacement
+    open: true, //permite que se abra el proyecto una vez carga el server
+    port:9000, //puerto donde se despliega el servidor
+  },
+  plugins: [
+    //Plugin de webpack que permite el hot module replacement
+    new webpack.HotModuleReplacementPlugin(), 
+    new HtmlWebpackPlugin({
+      title: 'Plugin'
+    })
+  ]
+};
 ```
