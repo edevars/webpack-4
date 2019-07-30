@@ -212,3 +212,29 @@ module.exports = {
 };
 
 ```
+
+## Servidor de desarrollo
+
+En modo de desarrollo normalmente estamos haciendo cambios constantemente a nuestro proyecto, para poder observar esos cambios en tiempo real webpack tiene opciones que nos pueden ayudar a lograrlo aunque de manera limitada. 
+
+Por ejemplo si nosotros queremos que webpack este a la escucha de nuestros archivos y los compile, podemos agregar la opción `--watch` o su shorthand `-w`. Se puede añadir esta opción en los scripts para observar los cambios.
+
+```json
+  "scripts": {
+    "build:dev": "webpack --config ./dev-server/webpack.config --watch"
+  }
+```
+
+El inconveniente que tiene esta opción es que no ofrece *hot reloading*, es decir, que observemos los cambios de nuestra aplicación en tiempo real. Para eso podemos usar `webpack-dev-server`, lo podemos agregar a nuestras dependencias de desarrollo con: 
+
+```
+yarn add webpack-dev-server -D 
+```
+
+Para configurarlo, en los scripts del `package.json` debemos agregar `webpack-dev-server` en vez de `webpack`, con esto ya no es necesario usar la opción de `--watch` para observar los archivos.
+
+```json
+  "scripts": {
+    "build:dev": "webpack-dev-server --config ./dev-server/webpack.config"
+  }
+```
