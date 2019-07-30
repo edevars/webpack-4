@@ -163,3 +163,52 @@ module.exports = {
 }
 
 ```
+
+## Plugins
+
+Los plugins nos permiten darle funcionalidades extra a webpack y extender las capacidades de los loaders. Con ellos por ejemplo podemos minificar nuestro css o incluso autogenerar el html optimizado para producción. Estos plugins se agregan a la configuración de webpack a través del key value `plugins`.
+
+En este caso usaremos dos plugins:
+
+- **mini-css-extract-plugin**: Este plugin nos generará nuestro archivo css ya procesado por webpack en la carpeta dist (producción)
+- **html-webpack-plugin**: Nos genera un html para producción importando todos los archivos que generamos con webpack.
+
+```javascript
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+module.exports = {
+  entry: path.resolve(__dirname, "src/js/index.js"),
+  mode: "production",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "js/bundle.js"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          //En los loaders podemos especificar si un plugin
+          //tendra alguna relacion con el loader.
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          "css-loader"
+        ]
+      }
+    ]
+  },
+  //Parte donde se configuran los plugins
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css"
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Plugin'
+    })
+  ]
+};
+
+```
