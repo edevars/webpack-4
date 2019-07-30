@@ -1,3 +1,10 @@
+import title from "./title";
 import "../css/index.css";
 
-document.body.innerHTML = "<h1>Usando CSS en Webpack! 🎉</h1>";
+title();
+
+if (module.hot) {
+  module.hot.accept("./title", () => {
+    title();
+  });
+}
