@@ -132,5 +132,34 @@ La manera de agregarlos en nuestro `webpack.config.js` es añadiendo un module, 
 ```javascript
 import "../css/index.css";
 
-document.body.innerHTML = "<h1>Usando CSS en Webpack!</h1>";
+document.body.innerHTML = "<h1>Usando CSS en Webpack! 🎉</h1>";
+
+```
+Para que esto funcione usamos los loaders de css-loader y style-loader en nuestro `webpack.config.js` de la siguiente manera:
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  entry: path.resolve(__dirname,'src/js/index.js'),
+  mode: 'production',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'js/bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        //Expresión regular que elige todos los archivos que terminen en css.
+        test: /\.css$/,
+        //Los loaders que procesarán los archivos css.
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
+  }
+}
+
 ```
