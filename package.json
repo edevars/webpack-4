@@ -20,7 +20,8 @@
     "build:babel": "webpack-dev-server --config ./babel/webpack.config",
     "build:react": "webpack-dev-server --config ./react/webpack.config",
     "build:url-loader": "webpack-dev-server --config ./url-loader/webpack.config",
-    "build:prepros": "webpack-dev-server --config ./preprocesador/webpack.config"
+    "build:prepros": "webpack-dev-server --config ./preprocesador/webpack.config",
+    "build:prevent-duplication": "webpack --config ./prevent-duplication/webpack.config"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
