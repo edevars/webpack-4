@@ -19,7 +19,8 @@
     "build:dev": "webpack-dev-server --config ./dev-server/webpack.config",
     "build:babel": "webpack-dev-server --config ./babel/webpack.config",
     "build:react": "webpack-dev-server --config ./react/webpack.config",
-    "build:url-loader": "webpack-dev-server --config ./url-loader/webpack.config"
+    "build:url-loader": "webpack-dev-server --config ./url-loader/webpack.config",
+    "build:prepros": "webpack-dev-server --config ./preprocesador/webpack.config"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -30,8 +31,16 @@
     "css-loader": "^3.1.0",
     "file-loader": "^4.1.0",
     "html-webpack-plugin": "^3.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "postcss-loader": "^3.0.0",
+    "postcss-nested": "^4.1.2",
+    "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
     "url-loader": "^2.1.0",
     "webpack": "4.32.2",
     "webpack-cli": "3.3.2",
